@@ -17,6 +17,7 @@ export async function createSessionClient() {
   client.setSession(session.value);
 
   return {
+    // Get the currently logged in user.
     get account() {
       return new Account(client);
     },
@@ -30,15 +31,17 @@ export async function createAdminClient() {
     .setKey(process.env.NEXT_APPWRITE_KEY!);
 
   return {
+    // Get the currently logged in user.
     get account() {
       return new Account(client);
     },
+    // Get a list of all databases from the current Appwrite project.
     get database() {
       return new Databases(client);
     },
+    // Get a list of all the project's users.
     get user() {
       return new Users(client);
     }
   };
 }
-
